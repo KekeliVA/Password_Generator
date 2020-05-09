@@ -14,4 +14,4 @@ The purpose of this assignment is to develop a password generator that adheres t
 
 I took a slightly different approach and decided to employ the use of checkboxes in my code. The use of checkboxes I believed brought a cleaner look and better user experience to the webpage. 
 
-![](filename%20pass_gen.png)
+![](filename%20pass_gen.PNG)
