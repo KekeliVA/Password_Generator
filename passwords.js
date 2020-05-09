@@ -111,6 +111,16 @@ function writePassword() {
 var generateButton = document.querySelector("#button");
 generateButton.addEventListener('click', writePassword);
 
+var isUpper = false;
+var isLower = false;
+var isSymbol = false;
+var alphaNum = false;
+var error = "Please select criteria";
+let resultEl = document.querySelector(".password-display");
+if ( !isUpper && !isLower && !isSymbol && !alphaNum) {
+  resultEl.innerText = error;
+}
+
 
 
 // make arrays of characters

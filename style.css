@@ -39,3 +39,15 @@ body {
   border: 2px solid white;
 
 }
+
+#reqUpper {
+  margin-right: 1em;
+}
+
+#reqLower {
+  margin-right: 1em;
+}
+
+#reqSymbols {
+  margin-right: 1em;
+}
