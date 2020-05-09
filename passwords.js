@@ -13,10 +13,30 @@ var isSymbol = confirm("Do you need symbols in your password?");
 parseInt(howLong);
 */
 
+// connecting range slider and num
+const characterRange = document.getElementById('charLengthRange');
+const characterNum = document.getElementById('charLengthNum');
+
+charLengthRange.addEventListener('input', linkCharValue);
+charLengthNum.addEventListener('input', linkCharValue);
+
+function linkCharValue(e) {
+  const value = e.target.value
+  charLengthRange.value = value;
+  charLengthNum.value = value;
+  
+};
+
+// creating all the arrays
+var upperArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var lowerArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var numberArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var symbolArray = ['!','@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+','<', '>', '?', '/'];
+
 // create function to gather checkbox data
 
 function getPasswordOptions() {
-  var howLong = document.getElementById('charLengthRangeNum').value;
+  var howLong = document.getElementById('charLengthNum').value;
   var isUpper = document.getElementById('reqUpper');
   var isLower = document.getElementById('reqLower');
   var alphaNum = document.getElementById('reqAlphaNum');
@@ -46,19 +66,19 @@ function generatePassword() {
     guaranteeCharacters.push(randomize(upperArray))
   }
 
-  if (options.hasUppercaseCharacters) {
-    possibleCharacters = possibleCharacters.concat(upperArray);
-    guaranteeCharacters.push(randomize(upperArray))
+  if (options.hasLowercaseCharacters) {
+    possibleCharacters = possibleCharacters.concat(lowerArray);
+    guaranteeCharacters.push(randomize(lowerArray))
   }
 
-  if (options.hasUppercaseCharacters) {
-    possibleCharacters = possibleCharacters.concat(upperArray);
-    guaranteeCharacters.push(randomize(upperArray))
+  if (options.hasSpecialCharacters) {
+    possibleCharacters = possibleCharacters.concat(symbolArray);
+    guaranteeCharacters.push(randomize(symbolArray))
   }
 
-  if (options.hasUppercaseCharacters) {
-    possibleCharacters = possibleCharacters.concat(upperArray);
-    guaranteeCharacters.push(randomize(upperArray))
+  if (options.hasAlphaNumbericCharacters) {
+    possibleCharacters = possibleCharacters.concat(numberArray);
+    guaranteeCharacters.push(randomize(numberArray))
   }
   
   for (var i = 0; i < options.length; i++) {
@@ -72,17 +92,26 @@ function generatePassword() {
   return result.join("");
 };
 
-function randomize() {
-
+// randomize needs to be able to randomly select elements of an array
+function randomize(array) {
+  var char = null;
+  var i = Math.floor(Math.random() * array.length);
+  char = array[i]
+  
+  return char
 }
 
 function writePassword() {
   var password = generatePassword();
-  var passwordText = document.getElementById('#');
+  var passwordText = document.querySelector('.password-display');
   passwordText.value = password;
+  let resultEl = document.querySelector(".password-display");
+  resultEl.innerText = password; // uncaught typeerror: cannot set property innerText of null
 }
 var generateButton = document.querySelector("#button");
 generateButton.addEventListener('click', writePassword);
+
+
 
 // make arrays of characters
 // finish randomize function
